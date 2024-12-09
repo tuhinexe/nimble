@@ -15,7 +15,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Nimble",
-  description: "Helping you manage",
+  description: "Helping you manage your time and tasks",
 };
 
 export default function RootLayout({

@@ -19,6 +19,7 @@ var AppConfig Config
 
 
 func LoadConfig() {
+
 	
 	viper.SetConfigName("config")
 	viper.SetConfigType("env")    
