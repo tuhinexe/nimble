@@ -1,12 +1,13 @@
-import "@/styles/globals.css";
+import "@nimble/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
 
-import { siteConfig } from "@/config/site";
-import { poppins } from "@/config/fonts";
+import { siteConfig } from "@nimble/config/site";
+import { poppins } from "@nimble/config/fonts";
+import { resolveValue, ToastBar, Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: {
@@ -45,6 +46,18 @@ export default function RootLayout({
             {/* <Navbar /> */}
             <main className="">{children}</main>
           </div>
+          <Toaster
+            position="bottom-left"
+            reverseOrder={false}
+            gutter={8}
+            containerClassName=""
+            containerStyle={{}}
+            toastOptions={{
+              success: {
+                duration: 4000,
+              },
+            }}
+          />
         </Providers>
       </body>
     </html>

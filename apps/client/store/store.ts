@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import countReducer from "@nimble/store/slices/count";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    count: countReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
