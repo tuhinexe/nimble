@@ -46,18 +46,6 @@ export default function RootLayout({
             {/* <Navbar /> */}
             <main className="">{children}</main>
           </div>
-          <Toaster
-            position="bottom-left"
-            reverseOrder={false}
-            gutter={8}
-            containerClassName=""
-            containerStyle={{}}
-            toastOptions={{
-              success: {
-                duration: 4000,
-              },
-            }}
-          />
         </Providers>
       </body>
     </html>
