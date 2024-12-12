@@ -10,8 +10,9 @@ import (
 type Config struct {
 	Port     string
 	MongoURI string
-	RedisURI string
+	REDIS_ADDRESS string
 	Env      string
+	REDIS_PASSWORD string
 }
 
 
