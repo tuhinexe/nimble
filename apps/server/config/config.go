@@ -13,6 +13,7 @@ type Config struct {
 	REDIS_ADDRESS string
 	Env      string
 	REDIS_PASSWORD string
+	DB_NAME string
 }
 
 

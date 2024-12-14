@@ -1,14 +1,22 @@
 package models
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 
 
 
 type User struct {
 	ID	primitive.ObjectID	`json:"_id,omitempty" bson:"_id,omitempty"`
-	Username	string	`json:"username,omitempty" bson:"username,omitempty"`
-	Gmail	string	`json:"gmail,omitempty" bson:"gmail,omitempty"`
-	Timezone  string	`json:"timezone,omitempty" bson:"timezone"`
+	Name	string	`json:"username,omitempty" bson:"username,omitempty"`
+	Password	string	`json:"password,omitempty" bson:"password,omitempty"`
+	Email	string	`json:"email,omitempty" bson:"email,omitempty"`
+	CreatedAt	time.Time	`json:"created_at,omitempty" bson:"created_at,omitempty"`
+	UpdatedAt	time.Time	`json:"updated_at,omitempty" bson:"updated_at,omitempty"`
+	LoginType	string	`json:"type,omitempty" bson:"type,omitempty"`
+	ImageUrl 		string	`json:"image,omitempty" bson:"image,omitempty"`
 
 }

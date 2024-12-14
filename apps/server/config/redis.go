@@ -2,6 +2,7 @@ package config
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/go-redis/redis/v8"
 )
@@ -20,6 +21,7 @@ func InitRedis() (*redis.Client,error) {
 	if err != nil {
 		return nil,err
 	}
+	fmt.Println("Redis connected")
 	return client,nil
 
 }

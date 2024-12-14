@@ -1,5 +1,5 @@
 export type OwnerState = {
-  owner: null;
+  owner: Owner | null;
 };
 
 export interface APIResponseError {
@@ -7,3 +7,10 @@ export interface APIResponseError {
   statusCode?: number;
   errors?: Record<string, string[]>;
 }
+
+export type Owner = {
+  id: number;
+  name: string;
+  email: string;
+  updatedAt: string;
+};

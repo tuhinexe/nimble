@@ -2,7 +2,7 @@ import { apiSlice } from "@nimble/services/api";
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    signup: builder.mutation({
+    createUser: builder.mutation({
       query: (userData) => ({
         url: "/auth/signup",
         method: "POST",
@@ -26,5 +26,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useSignupMutation, useLoginMutation, useFetchProfileMutation } =
-  authApiSlice;
+export const {
+  useCreateUserMutation,
+  useLoginMutation,
+  useFetchProfileMutation,
+} = authApiSlice;

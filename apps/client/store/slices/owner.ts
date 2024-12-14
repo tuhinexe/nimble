@@ -1,4 +1,4 @@
-import { OwnerState } from "@nimble/types";
+import { Owner, OwnerState } from "@nimble/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: OwnerState = {

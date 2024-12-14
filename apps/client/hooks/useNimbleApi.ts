@@ -1,11 +1,12 @@
+import { signInWithGoogle, signUpWithCredentials } from "@nimble/firebase/auth";
 import {
+  useCreateUserMutation,
   useFetchProfileMutation,
   useLoginMutation,
-  useSignupMutation,
 } from "@nimble/store/slices/authApiSlice";
 
 export const useNimbleApi = () => {
-  const [signup, signupState] = useSignupMutation();
+  const [signup, signupState] = useCreateUserMutation();
   const [login, loginState] = useLoginMutation();
 
   const [fetchProfile, fetchProfileState] = useFetchProfileMutation();
@@ -13,6 +14,8 @@ export const useNimbleApi = () => {
   //   others
 
   return {
+    signUpWithCredentials,
+    signInWithGoogle,
     signup,
     signupState,
     login,

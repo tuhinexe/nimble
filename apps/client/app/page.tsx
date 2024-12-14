@@ -8,48 +8,26 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@nimble/config/site";
 import { ThemeSwitch } from "@nimble/components/theme-switch";
 import toast from "react-hot-toast";
-import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { ErrorHandler } from "@nimble/services/errorHandler";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ownerSelector } from "@nimble/store/store";
 import { useNimbleApi } from "@nimble/hooks/useNimbleApi";
+import { setOwner } from "@nimble/store/slices/owner";
 
 export default function Home() {
-  const { data: session, status } = useSession();
-  const { owner } = useSelector(ownerSelector);
-  const { signup, signupState } = useNimbleApi();
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (status === "authenticated" && !owner) {
-      console.log("this is session", session, owner);
-      const userData = {
-        email: session?.user?.email,
-        name: session?.user?.name,
-        image: session?.user?.image,
-      };
-    }
-  }, [status, session, owner]);
+  const { signInWithGoogle } = useNimbleApi();
 
-  const handleSignup = async () => {
-    try {
-      if (!session) {
-        await signIn("google", {
-          redirect: false,
-        });
-        return;
-      }
-    } catch (error) {
-      ErrorHandler.handleError(error);
-    }
+  const handleSignUp = async () => {
+    const user = await signInWithGoogle();
+
+    console.log(user);
   };
   return (
-    <section className="flex flex-col items-center justify-center gap-4 ">
-      <button onClick={() => toast.success("Hii")}>Hello Nimble</button>
+    <div>
+      Hello
       <ThemeSwitch />
-
-      <button onClick={handleSignup}>Signin with Google</button>
-      <button onClick={() => signOut()}>Sign Out</button>
-    </section>
+      <button onClick={handleSignUp}>Sign up with google</button>
+    </div>
   );
 }

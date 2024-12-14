@@ -9,7 +9,6 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { Provider } from "react-redux";
 import store from "@nimble/store/store";
 import GlobalErrorBoundary from "@nimble/components/ErrorBoundary";
-import { SessionProvider, useSession } from "next-auth/react";
 
 export interface ProvidersProps {
   children: React.ReactNode;
@@ -28,14 +27,13 @@ export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
 
   return (
-    <SessionProvider>
-      <Provider store={store}>
-        <GlobalErrorBoundary>
-          <NextUIProvider navigate={router.push}>
-            <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
-          </NextUIProvider>
-        </GlobalErrorBoundary>
-      </Provider>
-    </SessionProvider>
+    <Provider store={store}>
+      <GlobalErrorBoundary>
+        <NextUIProvider navigate={router.push}>
+          <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+        </NextUIProvider>
+        {children}
+      </GlobalErrorBoundary>
+    </Provider>
   );
 }
