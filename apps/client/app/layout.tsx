@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { Providers } from "./providers";
 
 import { siteConfig } from "@nimble/config/site";
-import { poppins } from "@nimble/config/fonts";
+import { boogaloo, marker, poppins } from "@nimble/config/fonts";
 import { resolveValue, ToastBar, Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
@@ -37,14 +37,15 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          poppins.variable
+          "h-screen bg-background font-main",
+          poppins.variable,
+          boogaloo.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
+        <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
+          <div className={clsx("w-full flex flex-col h-full")}>
             {/* <Navbar /> */}
-            <main className="">{children}</main>
+            <main className="w-full h-full">{children}</main>
           </div>
         </Providers>
       </body>

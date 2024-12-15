@@ -32,7 +32,6 @@ export function Providers({ children, themeProps }: ProvidersProps) {
         <NextUIProvider navigate={router.push}>
           <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
         </NextUIProvider>
-        {children}
       </GlobalErrorBoundary>
     </Provider>
   );
