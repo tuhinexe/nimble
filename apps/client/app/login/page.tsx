@@ -13,10 +13,19 @@ type Props = {};
 const Login = (props: Props) => {
   const [authType, setAuthType] = useState<"login" | "signup">("signup");
   return (
-    <section className={clsx("flex justify-center items-center h-screen")}>
-      <div className="flex w-[40%] items-center justify-center flex-col gap-4">
-        <h1 className="font-head text-main text-6xl">Less Yapping</h1>
-        <h1 className="font-head text-main text-6xl">More Making</h1>
+    <section
+      className={clsx(
+        "flex flex-col md:flex-row md:justify-center items-center h-screen p-4"
+      )}
+    >
+      <div className="flex md:w-[40%] items-center justify-center flex-col gap-4">
+        <h1 className="text-5xl font-icon text-primary font-bold">Nimble</h1>
+        <h1 className="font-head text-main text-6xl dark:text-white">
+          Less Yapping
+        </h1>
+        <h1 className="font-head text-main text-6xl dark:text-white">
+          More Making
+        </h1>
         <Image
           unoptimized
           width={500}
@@ -25,12 +34,12 @@ const Login = (props: Props) => {
           alt="login_page_image"
         />
       </div>
-
-      <div className="w-[40%] flex items-center justify-center">
+      <hr className="w-[1px] hidden md:block h-[80%] bg-gray-400" />
+      <div className="md:w-[40%] w-[95%] flex items-center justify-center pb-4">
         <Card className="w-[400px] flex flex-col items-center p-8 gap-4">
           <h1 className="text-xl">Get started for free</h1>
           <div>
-            <Button className="border border-black bg-white">
+            <Button className="border border-black dark:text-black bg-white">
               <Image
                 src={"/assets/google-logo.svg"}
                 alt="google"

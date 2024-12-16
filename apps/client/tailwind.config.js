@@ -12,6 +12,7 @@ module.exports = {
       fontFamily: {
         main: "var(--font-poppins)",
         head: "var(--font-boogaloo)",
+        icon: "var(--font-marker)",
       },
     },
   },
@@ -27,7 +28,7 @@ module.exports = {
         light: {
           layout: {}, // light theme layout tokens
           colors: {
-            background: "#fff6df80",
+            background: "#fff6df",
           }, // light theme colors
         },
         dark: {

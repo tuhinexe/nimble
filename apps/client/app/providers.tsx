@@ -2,13 +2,12 @@
 
 import type { ThemeProviderProps } from "next-themes";
 
-import * as React from "react";
 import { NextUIProvider } from "@nextui-org/system";
-import { useRouter } from "next/navigation";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { Provider } from "react-redux";
-import store from "@nimble/store/store";
 import GlobalErrorBoundary from "@nimble/components/ErrorBoundary";
+import store from "@nimble/store/store";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { useRouter } from "next/navigation";
+import { Provider } from "react-redux";
 
 export interface ProvidersProps {
   children: React.ReactNode;

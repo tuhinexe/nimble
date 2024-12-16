@@ -1,5 +1,7 @@
 import {
   Boogaloo,
+  Caveat,
+  Caveat_Brush,
   Fira_Sans,
   Permanent_Marker,
   Poppins,
@@ -12,7 +14,7 @@ export const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export const marker = Permanent_Marker({
+export const marker = Caveat({
   weight: "400",
   style: "normal",
   subsets: ["latin"],

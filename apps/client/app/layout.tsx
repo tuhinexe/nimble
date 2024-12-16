@@ -39,7 +39,8 @@ export default function RootLayout({
         className={clsx(
           "h-screen bg-background font-main",
           poppins.variable,
-          boogaloo.variable
+          boogaloo.variable,
+          marker.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
