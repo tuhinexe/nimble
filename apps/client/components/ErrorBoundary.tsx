@@ -43,7 +43,7 @@ class GlobalErrorBoundary extends React.Component<
       <>
         {this.props.children}
         <Toaster
-          position="bottom-left"
+          position="top-right"
           reverseOrder={false}
           gutter={8}
           containerClassName=""

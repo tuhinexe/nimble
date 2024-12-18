@@ -12,7 +12,6 @@ import (
 type User struct {
 	ID	primitive.ObjectID	`json:"_id,omitempty" bson:"_id,omitempty"`
 	Name	string	`json:"username,omitempty" bson:"username,omitempty"`
-	Password	string	`json:"password,omitempty" bson:"password,omitempty"`
 	Email	string	`json:"email,omitempty" bson:"email,omitempty"`
 	CreatedAt	time.Time	`json:"created_at,omitempty" bson:"created_at,omitempty"`
 	UpdatedAt	time.Time	`json:"updated_at,omitempty" bson:"updated_at,omitempty"`

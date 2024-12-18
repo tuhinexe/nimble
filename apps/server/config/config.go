@@ -14,6 +14,7 @@ type Config struct {
 	Env      string
 	REDIS_PASSWORD string
 	DB_NAME string
+	JWT_SECRET string
 }
 
 

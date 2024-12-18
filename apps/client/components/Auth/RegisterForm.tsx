@@ -6,17 +6,29 @@ type Props = {};
 
 const RegisterForm = (props: Props) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.currentTarget));
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="flex flex-col gap-4">
-      <Form className="gap-6">
+      <Form onSubmit={handleSignup} className="gap-6">
         <Input
           label="Email"
           type="email"
+          name="email"
           labelPlacement="outside"
           placeholder="Enter your email"
           required
         />
         <Input
+          name="password"
           endContent={
             <div
               className="cursor-pointer"

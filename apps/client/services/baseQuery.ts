@@ -25,7 +25,7 @@ const customBaseQuery: BaseQueryFn<
     const error = axiosError as AxiosError;
 
     return {
-      error: { status: error.response?.status, data: error.response?.data },
+      error: error as AxiosError,
     };
   }
 };

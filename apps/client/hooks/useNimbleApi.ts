@@ -6,7 +6,7 @@ import {
 } from "@nimble/store/slices/authApiSlice";
 
 export const useNimbleApi = () => {
-  const [signup, signupState] = useCreateUserMutation();
+  const [createUser, signupState] = useCreateUserMutation();
   const [login, loginState] = useLoginMutation();
 
   const [fetchProfile, fetchProfileState] = useFetchProfileMutation();
@@ -16,7 +16,7 @@ export const useNimbleApi = () => {
   return {
     signUpWithCredentials,
     signInWithGoogle,
-    signup,
+    createUser,
     signupState,
     login,
     loginState,

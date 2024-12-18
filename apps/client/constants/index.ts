@@ -7,6 +7,7 @@ const URLS = {
     BASE: "http://localhost:5000/api/v1",
     PAYMENT: "http://localhost:5000/payments",
     SOCKET: "ws://localhost:5000",
+    APP: "http://app.localhost:3000",
   },
   //   PROD: {
   //     BASE: "https://backend.leadseeder.co/api/v1",
@@ -15,6 +16,8 @@ const URLS = {
   //     SOCKET: "wss://backend.leadseeder.co",
   //   },
 };
+
+export const APP_URL = URLS[ENV].APP;
 
 export const SOCKET_URL = URLS[ENV].SOCKET;
 

@@ -1,4 +1,5 @@
 import { Button, Divider, Form, Input } from "@nextui-org/react";
+import { PressEvent } from "@react-types/shared";
 import { Eye, EyeClosed } from "lucide-react";
 import React, { useState } from "react";
 
@@ -6,9 +7,14 @@ type Props = {};
 
 const LoginForm = (props: Props) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Login");
+  };
   return (
     <div className="flex flex-col gap-4">
-      <Form className=" gap-6 items-center">
+      <Form onSubmit={handleLogin} className=" gap-6 items-center">
         <Input
           label="Email"
           type="email"

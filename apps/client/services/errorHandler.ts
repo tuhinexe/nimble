@@ -3,10 +3,12 @@ import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 export class ErrorHandler {
   static handleError(error: unknown): void {
+    console.log("heree", typeof error);
     if (error instanceof AxiosError) {
       const apiError = error.response?.data as APIResponseError;
 
       if (apiError) {
+        console.error("API Error:", apiError);
         if (apiError.message) {
           toast.error(apiError.message, {
             position: "top-right",
@@ -23,7 +25,8 @@ export class ErrorHandler {
           });
         }
       } else {
-        switch (error.response?.status) {
+        console.error("Axios Error:", error);
+        switch (error?.status) {
           case 400:
             toast.error("Bad Request: Please check your input", {
               position: "top-right",

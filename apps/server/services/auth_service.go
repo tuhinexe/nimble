@@ -3,7 +3,6 @@ package services
 import (
 	"context"
 	"errors"
-	"log"
 	"time"
 
 	"github.com/go-redis/redis/v8"
@@ -11,7 +10,6 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	"golang.org/x/crypto/bcrypt"
 )
 
 type AuthService struct {
@@ -22,24 +20,15 @@ type AuthService struct {
 
 func (s *AuthService) Signup(ctx context.Context, user models.User, method string) (*models.User, error) {
 
+	if method == "google" {
 	filter := bson.M{"email": user.Email}
 	var existingUser models.User
+	// if the user already exists, return the user or create a new user
 	err := s.UserCollection.FindOne(ctx, filter).Decode(&existingUser)
 	if err == nil {
-		log.Println("User already exists")
-		return nil, errors.New("user already exists")
+		return &existingUser, nil
+	}	
 	}
-
-	
-	if method == "credentials" {
-		
-		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
-		if err != nil {
-			return nil, errors.New("failed to hash password")
-		}
-		user.Password = string(hashedPassword)
-	}
-
 
 	user.CreatedAt = time.Now()
 	user.UpdatedAt = time.Now()

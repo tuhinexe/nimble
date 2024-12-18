@@ -3,15 +3,60 @@
 import { Button, Card, Divider, Form, Input } from "@nextui-org/react";
 import LoginForm from "@nimble/components/Auth/LoginForm";
 import RegisterForm from "@nimble/components/Auth/RegisterForm";
+import { APP_URL } from "@nimble/constants";
+import useAppDispatch from "@nimble/hooks/useAppDispatch";
+import { useNimbleApi } from "@nimble/hooks/useNimbleApi";
+import { ErrorHandler } from "@nimble/services/errorHandler";
+import { setOwner } from "@nimble/store/slices/owner";
+import { appSelector } from "@nimble/store/store";
 import clsx from "clsx";
+import { sendEmailVerification } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
 const Login = (props: Props) => {
   const [authType, setAuthType] = useState<"login" | "signup">("signup");
+  const { signInWithGoogle, createUser } = useNimbleApi();
+  const dispatch = useAppDispatch();
+  const { currentSubDomain } = useSelector(appSelector);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!currentSubDomain || currentSubDomain !== "app") {
+      router.push(`${APP_URL}/login`);
+    }
+  }, [currentSubDomain]);
+
+  const handleGoogleLogin = async () => {
+    try {
+      const { user } = await signInWithGoogle();
+      // console.log(user);
+      const reqData = {
+        name: user.displayName,
+        email: user.email,
+        method: "google",
+        image: user.photoURL,
+      };
+
+      const result = await createUser(reqData).unwrap();
+
+      if (result?.success) {
+        console.log(result);
+        dispatch(setOwner(result.user));
+        toast.success("Login successful");
+      }
+      console.log(reqData);
+    } catch (error) {
+      console.log(error);
+      // ErrorHandler.handleError(error);
+    }
+  };
   return (
     <section
       className={clsx(
@@ -39,7 +84,10 @@ const Login = (props: Props) => {
         <Card className="w-[400px] flex flex-col items-center p-8 gap-4">
           <h1 className="text-xl">Get started for free</h1>
           <div>
-            <Button className="border border-black dark:text-black bg-white">
+            <Button
+              onPress={handleGoogleLogin}
+              className="border border-black dark:text-black bg-white"
+            >
               <Image
                 src={"/assets/google-logo.svg"}
                 alt="google"
