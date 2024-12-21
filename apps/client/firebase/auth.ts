@@ -17,7 +17,7 @@ export const signInWithGoogle = async (): Promise<UserCredential> => {
   }
 };
 
-export const signUpWithCredentials = async (
+export const loginWithPassword = async (
   email: string,
   password: string
 ): Promise<UserCredential> => {

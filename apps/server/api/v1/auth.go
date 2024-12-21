@@ -2,9 +2,12 @@ package api
 
 import (
 	"context"
+	"log"
 	"net/http"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 	"github.com/tuhinexe/nimble/apps/server/models"
 	"github.com/tuhinexe/nimble/apps/server/services"
 )
@@ -34,6 +37,9 @@ func (api *AuthAPI) SignUpHandler(c *fiber.Ctx) error {
 	if req.Method == "google" && req.Email == "" {
 		return c.Status(http.StatusBadRequest).JSON(fiber.Map{"message": "email is required for Google signup"})
 	}
+	if req.Image == "" {
+		req.Image = "https://ui-avatars.com/api/?name="+req.Name+"&size=512"
+	}
 
 	
 	user := models.User{
@@ -46,23 +52,24 @@ func (api *AuthAPI) SignUpHandler(c *fiber.Ctx) error {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"message": err.Error()})
 	}
 
-	// sessionID := uuid.NewString()
+	sessionID := uuid.NewString()
 
-	// err = api.AuthService.RedisClient.Set(context.Background(), sessionID, createdUser.ID.Hex(), time.Hour*24*7).Err()
+	err = api.AuthService.RedisClient.Set(context.Background(), sessionID, createdUser.ID.Hex(), time.Hour*24*7).Err()
 
-	// if err != nil {
-	// 	log.Println(err)
-	// 	return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": "failed to create session"})
-	// }
+	if err != nil {
+		log.Println(err)
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": "failed to create session"})
+	}
 
-	// c.Cookie(&fiber.Cookie{
-	// 	Name:     "session_id",
-	// 	Value:    sessionID,
-	// 	Expires:  time.Now().Add(time.Hour * 24 * 7),
-	// 	HTTPOnly: true,
-	// 	Secure:  true,
-	// 	SameSite: "Strict",
-	// })
+	c.Cookie(&fiber.Cookie{
+		Name:     "session_id",
+		Value:    sessionID,
+		Expires:  time.Now().Add(time.Hour * 24 * 7),
+		HTTPOnly: true,
+		Secure:  true,
+		SameSite: "None",
+		Path: "/",
+	})
 
 	
 	return c.Status(http.StatusCreated).JSON(fiber.Map{
@@ -75,3 +82,4 @@ func (api *AuthAPI) SignUpHandler(c *fiber.Ctx) error {
 		"success": true,
 	})
 }
+

@@ -8,7 +8,7 @@ import (
 )
 
 
-
+var RedisClient *redis.Client
 
 func InitRedis() (*redis.Client,error) {
 	client := redis.NewClient(&redis.Options{
@@ -21,6 +21,8 @@ func InitRedis() (*redis.Client,error) {
 	if err != nil {
 		return nil,err
 	}
+
+	RedisClient = client
 	fmt.Println("Redis connected")
 	return client,nil
 

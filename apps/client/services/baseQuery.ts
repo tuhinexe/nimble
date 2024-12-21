@@ -19,7 +19,7 @@ const customBaseQuery: BaseQueryFn<
       data,
       params,
     });
-
+    // console.log(result.data);
     return { data: result.data };
   } catch (axiosError) {
     const error = axiosError as AxiosError;

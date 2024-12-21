@@ -17,6 +17,7 @@ import (
 
 	"github.com/tuhinexe/nimble/apps/server/api/v1"
 	"github.com/tuhinexe/nimble/apps/server/config"
+	"github.com/tuhinexe/nimble/apps/server/middleware"
 	"github.com/tuhinexe/nimble/apps/server/routes"
 	"github.com/tuhinexe/nimble/apps/server/services"
 )
@@ -30,7 +31,7 @@ func setupMiddleware(app *fiber.App) {
 	app.Use(logger.New())
 
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "http://localhost:3000,http://app.localhost:3000",
+		AllowOrigins:     "http://app.localhost:3000",
 		AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
 		AllowCredentials: true,
 		AllowMethods:     "GET,POST,PUT,DELETE,OPTIONS",
@@ -116,6 +117,10 @@ func main() {
 	})
 
 	routes.AuthRoutes(api, *authApi)
+	api.Use(middleware.ValidateSession)
+	api.Get("/owner", func (c *fiber.Ctx) error {
+		return c.Status(fiber.StatusOK).JSON(fiber.Map{"message": "Welcome Owner"})
+	})
 
 	go func() {
 		log.Printf("Server running on port %s", port)

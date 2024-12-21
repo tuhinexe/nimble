@@ -1,4 +1,5 @@
 import { apiSlice } from "@nimble/services/api";
+import { AxiosError } from "axios";
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -16,18 +17,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
         data: credentials,
       }),
     }),
-    fetchProfile: builder.mutation({
-      query: (ownerID) => ({
-        url: "/user/profile",
-        method: "POST",
-        data: { ownerID },
+    fetchProfile: builder.query<unknown | AxiosError, void>({
+      query: () => ({
+        url: "/owner",
+        method: "GET",
       }),
     }),
   }),
 });
 
-export const {
-  useCreateUserMutation,
-  useLoginMutation,
-  useFetchProfileMutation,
-} = authApiSlice;
+export const { useCreateUserMutation, useLoginMutation, useFetchProfileQuery } =
+  authApiSlice;

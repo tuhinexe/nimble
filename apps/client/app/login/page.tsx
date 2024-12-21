@@ -50,8 +50,9 @@ const Login = (props: Props) => {
         console.log(result);
         dispatch(setOwner(result.user));
         toast.success("Login successful");
+        router.push(`${APP_URL}/app`);
       }
-      console.log(reqData);
+      // console.log(reqData);
     } catch (error) {
       console.log(error);
       // ErrorHandler.handleError(error);

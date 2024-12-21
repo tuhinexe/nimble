@@ -34,7 +34,7 @@ export default function Home() {
     }
 
     if (currentSubDomain === "app") {
-      router.push("/login");
+      router.push("/app");
     }
   }, [currentSubDomain]);
   const handleSignUp = async () => {

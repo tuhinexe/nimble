@@ -11,5 +11,6 @@ func AuthRoutes(api fiber.Router,authApi api.AuthAPI){
 	auth := api.Group("/auth")
 
 	auth.Post("/signup",authApi.SignUpHandler)
+	// auth.Get("owner",authApi.GetOwnerHandler)
 
 }
