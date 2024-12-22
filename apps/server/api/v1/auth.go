@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -80,6 +81,23 @@ func (api *AuthAPI) SignUpHandler(c *fiber.Ctx) error {
 			"imageUrl": createdUser.ImageUrl,
 		},
 		"success": true,
+	})
+}
+
+func (api *AuthAPI) GetOwner(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	fmt.Println("This is user id" + userID)
+	user, err := api.AuthService.GetOwner(context.Background(), userID)
+	if err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"message": err.Error()})
+	}
+	return c.JSON(fiber.Map{
+		"user": fiber.Map{
+			"id":    user.ID,
+			"name":  user.Name,
+			"email": user.Email,
+			"imageUrl": user.ImageUrl,
+		},
 	})
 }
 

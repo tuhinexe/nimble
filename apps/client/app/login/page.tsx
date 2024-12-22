@@ -3,6 +3,7 @@
 import { Button, Card, Divider, Form, Input } from "@nextui-org/react";
 import LoginForm from "@nimble/components/Auth/LoginForm";
 import RegisterForm from "@nimble/components/Auth/RegisterForm";
+import { ThemeSwitch } from "@nimble/components/theme-switch";
 import { APP_URL } from "@nimble/constants";
 import useAppDispatch from "@nimble/hooks/useAppDispatch";
 import { useNimbleApi } from "@nimble/hooks/useNimbleApi";
@@ -66,6 +67,7 @@ const Login = (props: Props) => {
     >
       <div className="flex md:w-[40%] items-center justify-center flex-col gap-4">
         <h1 className="text-5xl font-icon text-primary font-bold">Nimble</h1>
+        <ThemeSwitch />
         <h1 className="font-head text-main text-6xl dark:text-white">
           Less Yapping
         </h1>

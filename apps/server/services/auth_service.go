@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/go-redis/redis/v8"
@@ -42,5 +43,23 @@ func (s *AuthService) Signup(ctx context.Context, user models.User, method strin
 	
 	user.ID = res.InsertedID.(primitive.ObjectID)
 
+	return &user, nil
+}
+
+
+func (s *AuthService) GetOwner(ctx context.Context, userID string) (*models.User, error) {
+
+	objectId,err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return nil, errors.New("invalid user id")
+	}
+
+	filter := bson.M{"_id": objectId}
+	var user models.User
+	err = s.UserCollection.FindOne(ctx, filter).Decode(&user)
+	if err != nil {
+		fmt.Println(err)
+		return nil, errors.New("failed to get user")
+	}
 	return &user, nil
 }

@@ -12,5 +12,6 @@ export type Owner = {
   id: number;
   name: string;
   email: string;
+  imageUrl: string;
   updatedAt: string;
 };

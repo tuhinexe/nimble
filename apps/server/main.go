@@ -118,9 +118,8 @@ func main() {
 
 	routes.AuthRoutes(api, *authApi)
 	api.Use(middleware.ValidateSession)
-	api.Get("/owner", func (c *fiber.Ctx) error {
-		return c.Status(fiber.StatusOK).JSON(fiber.Map{"message": "Welcome Owner"})
-	})
+	routes.OwnerRoutes(api, *authApi)
+	
 
 	go func() {
 		log.Printf("Server running on port %s", port)
