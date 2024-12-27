@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section suppressHydrationWarning lang="en">
+    <section suppressHydrationWarning>
       <div
         className={clsx(
           "h-screen bg-background font-main",

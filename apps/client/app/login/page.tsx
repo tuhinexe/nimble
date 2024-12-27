@@ -67,7 +67,7 @@ const Login = (props: Props) => {
     >
       <div className="flex md:w-[40%] items-center justify-center flex-col gap-4">
         <h1 className="text-5xl font-icon text-primary font-bold">Nimble</h1>
-        <ThemeSwitch />
+        {/* <ThemeSwitch /> */}
         <h1 className="font-head text-main text-6xl dark:text-white">
           Less Yapping
         </h1>

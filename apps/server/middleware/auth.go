@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/go-redis/redis/v8"
 	"github.com/gofiber/fiber/v2"
@@ -28,6 +27,6 @@ func ValidateSession(c *fiber.Ctx) error {
 	}
 
 	c.Locals("user_id", userID)
-	fmt.Print("This is session" + userID)
+	// fmt.Print("This is session" + userID)
 	return c.Next()
 }

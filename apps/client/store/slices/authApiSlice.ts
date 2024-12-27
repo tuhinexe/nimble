@@ -23,8 +23,18 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    logout: builder.mutation({
+      query: () => ({
+        url: "/owner/logout",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useCreateUserMutation, useLoginMutation, useFetchProfileQuery } =
-  authApiSlice;
+export const {
+  useCreateUserMutation,
+  useLoginMutation,
+  useFetchProfileQuery,
+  useLogoutMutation,
+} = authApiSlice;

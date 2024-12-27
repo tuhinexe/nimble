@@ -12,5 +12,6 @@ func OwnerRoutes(api fiber.Router,authApi api.AuthAPI){
 	owner := api.Group("/owner")
 
 	owner.Get("/",authApi.GetOwner)
+	owner.Get("/logout",authApi.LogoutHandler)
 
 }

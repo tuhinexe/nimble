@@ -63,3 +63,11 @@ func (s *AuthService) GetOwner(ctx context.Context, userID string) (*models.User
 	}
 	return &user, nil
 }
+
+func (s *AuthService) Logout(ctx context.Context, sessionID string) error {
+	err := s.RedisClient.Del(ctx, sessionID).Err()
+	if err != nil {
+		return errors.New("failed to logout")
+	}
+	return nil
+}

@@ -2,7 +2,6 @@ package api
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -86,7 +85,7 @@ func (api *AuthAPI) SignUpHandler(c *fiber.Ctx) error {
 
 func (api *AuthAPI) GetOwner(c *fiber.Ctx) error {
 	userID := c.Locals("user_id").(string)
-	fmt.Println("This is user id" + userID)
+	// fmt.Println("This is user id" + userID)
 	user, err := api.AuthService.GetOwner(context.Background(), userID)
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"message": err.Error()})
@@ -101,3 +100,17 @@ func (api *AuthAPI) GetOwner(c *fiber.Ctx) error {
 	})
 }
 
+
+func (api *AuthAPI) LogoutHandler(c *fiber.Ctx) error {
+	sessionID := c.Cookies("session_id")
+	if sessionID == "" {
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{"message": "session id is required"})
+	}
+	err := api.AuthService.Logout(context.Background(), sessionID)
+	if err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"message": err.Error()})
+	}
+
+	c.ClearCookie("session_id")
+	return c.JSON(fiber.Map{"message": "logged out successfully"})
+}

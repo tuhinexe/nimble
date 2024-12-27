@@ -3,11 +3,13 @@ import {
   useCreateUserMutation,
   useFetchProfileQuery,
   useLoginMutation,
+  useLogoutMutation,
 } from "@nimble/store/slices/authApiSlice";
 
 export const useNimbleApi = () => {
   const [createUser, signupState] = useCreateUserMutation();
   const [login, loginState] = useLoginMutation();
+  const [logout, logoutState] = useLogoutMutation();
 
   //   others
 
@@ -19,5 +21,7 @@ export const useNimbleApi = () => {
     login,
     loginState,
     useFetchProfileQuery,
+    logout,
+    logoutState,
   };
 };
