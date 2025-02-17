@@ -1,4 +1,4 @@
-import { Button, Divider, Form, Input } from "@nextui-org/react";
+import { Button, Divider, Form, Input } from "@heroui/react";
 import { auth } from "@nimble/firebase/config";
 import { useNimbleApi } from "@nimble/hooks/useNimbleApi";
 import {
@@ -27,10 +27,6 @@ const RegisterForm = (props: Props) => {
       if (!email || !password) {
         toast.error("Please fill in all fields");
         return;
-      }
-
-      if (password.length < 6) {
-        return toast.error("Password must be at least 6 characters long");
       }
 
       const { user } = await createUserWithEmailAndPassword(

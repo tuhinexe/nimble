@@ -1,13 +1,11 @@
 import "@nimble/styles/globals.css";
-import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
+import { Metadata, Viewport } from "next";
 
-import { Providers } from "@nimble/app/providers";
+import { Providers } from "@nimble/app/Providers";
 
-import { siteConfig } from "@nimble/config/site";
 import { boogaloo, marker, poppins } from "@nimble/config/fonts";
-import { resolveValue, ToastBar, Toaster } from "react-hot-toast";
+import { siteConfig } from "@nimble/config/site";
 import AuthProvider from "../AuthProvider";
 
 export const metadata: Metadata = {

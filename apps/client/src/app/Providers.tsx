@@ -2,7 +2,7 @@
 
 import type { ThemeProviderProps } from "next-themes";
 
-import { NextUIProvider } from "@nextui-org/system";
+import { HeroUIProvider } from "@heroui/react";
 import GlobalErrorBoundary from "@nimble/components/ErrorBoundary";
 import store from "@nimble/store/store";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
@@ -31,9 +31,9 @@ export function Providers({ children, themeProps }: ProvidersProps) {
     <Provider store={store}>
       <GlobalErrorBoundary>
         {/* <AuthProvider> */}
-        <NextUIProvider navigate={router.push}>
+        <HeroUIProvider>
           <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
-        </NextUIProvider>
+        </HeroUIProvider>
         {/* </AuthProvider> */}
       </GlobalErrorBoundary>
     </Provider>

@@ -1,7 +1,6 @@
 "use client";
 
-import { Button, Image } from "@nextui-org/react";
-import { ThemeSwitch } from "@nimble/components/theme-switch";
+import { Button, Image } from "@heroui/react";
 import { useNimbleApi } from "@nimble/hooks/useNimbleApi";
 import { ownerSelector } from "@nimble/store/store";
 import { useRouter } from "next/navigation";
@@ -43,7 +42,6 @@ const page = (props: Props) => {
           // isBlurred
         />
       )}
-      <ThemeSwitch />
       <Button onPress={handleLogout} variant="bordered">
         Logout
       </Button>

@@ -1,9 +1,8 @@
 "use client";
 
-import { Button, Card, Divider, Form, Input } from "@nextui-org/react";
+import { Button, Card, Divider, Form, Input } from "@heroui/react";
 import LoginForm from "@nimble/components/Auth/LoginForm";
 import RegisterForm from "@nimble/components/Auth/RegisterForm";
-import { ThemeSwitch } from "@nimble/components/theme-switch";
 import { APP_URL } from "@nimble/constants";
 import useAppDispatch from "@nimble/hooks/useAppDispatch";
 import { useNimbleApi } from "@nimble/hooks/useNimbleApi";

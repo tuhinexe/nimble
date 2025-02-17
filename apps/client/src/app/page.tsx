@@ -1,12 +1,9 @@
 "use client";
 
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code";
-import { button as buttonStyles } from "@nextui-org/theme";
+import { Link } from "@heroui/react";
 
 import { siteConfig } from "@nimble/config/site";
-import { ThemeSwitch } from "@nimble/components/theme-switch";
+
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { ErrorHandler } from "@nimble/services/errorHandler";
@@ -46,7 +43,7 @@ export default function Home() {
   return (
     <div>
       Hello
-      <ThemeSwitch />
+      {/* <ThemeSwitch /> */}
       <h1 className="text-5xl font-icon text-primary font-bold dark:text-white">
         Nimble
       </h1>

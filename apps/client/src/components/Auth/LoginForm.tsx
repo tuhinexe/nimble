@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Divider, Form, Input } from "@nextui-org/react";
+import { Button, Divider, Form, Input } from "@heroui/react";
 import { APP_URL } from "@nimble/constants";
 import { loginWithPassword } from "@nimble/firebase/auth";
 import { useNimbleApi } from "@nimble/hooks/useNimbleApi";
