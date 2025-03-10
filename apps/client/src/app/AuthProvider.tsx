@@ -20,19 +20,23 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { useFetchProfileQuery } = useNimbleApi();
-  // const { owner } = useSelector(ownerSelector);
-  const ownerData = useFetchProfileQuery();
+  const { owner } = useSelector(ownerSelector);
+  const ownerData = useFetchProfileQuery(undefined, {});
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
     const handleOwnerFetch = async () => {
-      console.log("Fetching owner");
-      // console.log(owner);
       if (ownerData.status === "fulfilled") {
         const data = ownerData.data as CurrentData;
         dispatch(setOwner(data.user));
+        if (!data.user) {
+          router.replace("/login");
+        } else {
+          router.replace("/app");
+        }
       } else if (ownerData.status === "rejected") {
         router.replace("/login");
       }

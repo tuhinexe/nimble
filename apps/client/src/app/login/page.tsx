@@ -8,7 +8,7 @@ import useAppDispatch from "@nimble/hooks/useAppDispatch";
 import { useNimbleApi } from "@nimble/hooks/useNimbleApi";
 import { ErrorHandler } from "@nimble/services/errorHandler";
 import { setOwner } from "@nimble/store/slices/owner";
-import { appSelector } from "@nimble/store/store";
+import { appSelector, ownerSelector } from "@nimble/store/store";
 import clsx from "clsx";
 import { sendEmailVerification } from "firebase/auth";
 import Image from "next/image";
@@ -16,6 +16,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { FaGoogle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 type Props = {};
@@ -26,12 +27,7 @@ const Login = (props: Props) => {
   const dispatch = useAppDispatch();
   const { currentSubDomain } = useSelector(appSelector);
   const router = useRouter();
-
-  useEffect(() => {
-    if (!currentSubDomain || currentSubDomain !== "app") {
-      router.push(`${APP_URL}/login`);
-    }
-  }, [currentSubDomain]);
+  const { owner } = useSelector(ownerSelector);
 
   const handleGoogleLogin = async () => {
     try {
@@ -50,7 +46,7 @@ const Login = (props: Props) => {
         console.log(result);
         dispatch(setOwner(result.user));
         toast.success("Login successful");
-        router.push(`${APP_URL}/app`);
+        router.push("/app");
       }
       // console.log(reqData);
     } catch (error) {
@@ -67,12 +63,8 @@ const Login = (props: Props) => {
       <div className="flex md:w-[40%] items-center justify-center flex-col gap-4">
         <h1 className="text-5xl font-icon text-primary font-bold">Nimble</h1>
         {/* <ThemeSwitch /> */}
-        <h1 className="font-head text-main text-6xl dark:text-white">
-          Less Yapping
-        </h1>
-        <h1 className="font-head text-main text-6xl dark:text-white">
-          More Making
-        </h1>
+        <h1 className="font-head text-main text-6xl ">Less Yapping</h1>
+        <h1 className="font-head text-main text-6xl ">More Making</h1>
         <Image
           unoptimized
           width={500}
@@ -90,12 +82,7 @@ const Login = (props: Props) => {
               onPress={handleGoogleLogin}
               className="border border-black dark:text-black bg-white"
             >
-              <Image
-                src={"/assets/google-logo.svg"}
-                alt="google"
-                width={30}
-                height={20}
-              />
+              <FaGoogle />
               Sign in with Google
             </Button>
           </div>

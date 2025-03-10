@@ -3,7 +3,6 @@ import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 export class ErrorHandler {
   static handleError(error: unknown): void {
-    console.log("heree", typeof error);
     if (error instanceof AxiosError) {
       const apiError = error.response?.data as APIResponseError;
 

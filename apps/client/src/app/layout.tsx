@@ -1,4 +1,4 @@
-import "@nimble/styles/globals.css";
+import "@nimble/app/globals.css";
 import { Metadata, Viewport } from "next";
 
 import clsx from "clsx";
@@ -8,6 +8,7 @@ import { Providers } from "./Providers";
 import { siteConfig } from "@nimble/config/site";
 import { boogaloo, marker, poppins } from "@nimble/config/fonts";
 import { resolveValue, ToastBar, Toaster } from "react-hot-toast";
+import AuthProvider from "./AuthProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -44,10 +45,12 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <div className={clsx("w-full flex flex-col h-full")}>
-            {/* <Navbar /> */}
-            <main className="w-full h-full">{children}</main>
-          </div>
+          <AuthProvider>
+            <div className={clsx("w-full flex flex-col h-full")}>
+              {/* <Navbar /> */}
+              <main className="w-full h-full">{children}</main>
+            </div>
+          </AuthProvider>
         </Providers>
       </body>
     </html>

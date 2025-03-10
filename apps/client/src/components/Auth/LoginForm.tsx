@@ -49,7 +49,7 @@ const LoginForm = (props: Props) => {
 
         if (result?.success) {
           toast.success("Login successful");
-          router.push(`${APP_URL}/app`);
+          router.push(`/app`);
         }
       } else {
         return toast.error("Email not verified. Please verify your email");

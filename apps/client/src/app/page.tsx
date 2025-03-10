@@ -23,31 +23,29 @@ export default function Home() {
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const url = new URL(window.location.href);
-      console.log(url.hostname.split(".")[0]);
-      dispatch(setSubDomain(url.hostname.split(".")[0]));
-    }
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const url = new URL(window.location.href);
+  //     console.log(url.hostname.split(".")[0]);
+  //     dispatch(setSubDomain(url.hostname.split(".")[0]));
+  //   }
 
-    if (currentSubDomain === "app") {
-      router.push("/app");
-    }
-  }, [currentSubDomain]);
-  const handleSignUp = async () => {
-    const user = await signInWithGoogle();
+  //   if (currentSubDomain === "app") {
+  //     router.push("/app");
+  //   }
+  // }, [currentSubDomain]);
+  // const handleSignUp = async () => {
+  //   const user = await signInWithGoogle();
 
-    console.log(user);
-  };
+  //   console.log(user);
+  // };
 
   return (
     <div>
       Hello
       {/* <ThemeSwitch /> */}
-      <h1 className="text-5xl font-icon text-primary font-bold dark:text-white">
-        Nimble
-      </h1>
-      <button onClick={handleSignUp}>Sign up with google</button>
+      <h1 className="text-5xl font-icon font-bold text-primary">Nimble</h1>
+      {/* <button onClick={handleSignUp}>Sign up with google</button> */}
     </div>
   );
 }

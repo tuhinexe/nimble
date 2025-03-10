@@ -1,4 +1,3 @@
-import "@nimble/styles/globals.css";
 import clsx from "clsx";
 import { Metadata, Viewport } from "next";
 
@@ -7,6 +6,8 @@ import { Providers } from "@nimble/app/Providers";
 import { boogaloo, marker, poppins } from "@nimble/config/fonts";
 import { siteConfig } from "@nimble/config/site";
 import AuthProvider from "../AuthProvider";
+import Sidebar from "@nimble/components/ui/Sidebar";
+import Navbar from "@nimble/components/ui/Navbar";
 
 export const metadata: Metadata = {
   title: {
@@ -41,13 +42,13 @@ export default function RootLayout({
           marker.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <AuthProvider>
-            <div className={clsx("w-full flex flex-col h-full")}>
-              {children}
-            </div>
-          </AuthProvider>
-        </Providers>
+        <div className={clsx("w-full flex h-full")}>
+          <Sidebar />
+          <div className="w-full">
+            <Navbar />
+            {children}
+          </div>
+        </div>
       </div>
     </section>
   );

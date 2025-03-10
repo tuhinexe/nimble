@@ -16,26 +16,18 @@ export interface ProvidersProps {
   themeProps?: ThemeProviderProps;
 }
 
-declare module "@react-types/shared" {
-  interface RouterConfig {
-    routerOptions: NonNullable<
-      Parameters<ReturnType<typeof useRouter>["push"]>[1]
-    >;
-  }
-}
-
 export function Providers({ children, themeProps }: ProvidersProps) {
   const router = useRouter();
 
   return (
-    <Provider store={store}>
-      <GlobalErrorBoundary>
-        {/* <AuthProvider> */}
-        <HeroUIProvider>
-          <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
-        </HeroUIProvider>
-        {/* </AuthProvider> */}
-      </GlobalErrorBoundary>
-    </Provider>
+    <HeroUIProvider>
+      <Provider store={store}>
+        <GlobalErrorBoundary>
+          {/* <AuthProvider> */}
+          {children}
+          {/* </AuthProvider> */}
+        </GlobalErrorBoundary>
+      </Provider>
+    </HeroUIProvider>
   );
 }

@@ -111,6 +111,15 @@ func (api *AuthAPI) LogoutHandler(c *fiber.Ctx) error {
 		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"message": err.Error()})
 	}
 
-	c.ClearCookie("session_id")
-	return c.JSON(fiber.Map{"message": "logged out successfully"})
+	// Clear the session cookie
+	c.Cookie(&fiber.Cookie{
+		Name:     "session_id",
+		Value:    "",
+		Expires:  time.Now().Add(-time.Hour),
+		HTTPOnly: true,
+		Secure:  true,
+		SameSite: "None",
+		Path: "/",
+	})
+	return c.JSON(fiber.Map{"message": "logged out successfully", "success": true})
 }
